@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var fs = require('fs-extra')
 var text = require("extract-text-webpack-plugin")
 var html = require('html-webpack-plugin')
-var localConfig = require('../.config')
+var localConfig = require('../.config.json')
 
 require('../data/bin/build-dist')()
 
@@ -27,7 +27,7 @@ config.output = {
   filename: "build.[hash].js"
 }
 if(process.env.DIST)
-  config.output.publicPath = localConfig.publicPath
+  config.output.publicPath = localConfig['public-path']
 
 config.module = require('./loader')
 

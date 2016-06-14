@@ -2,7 +2,7 @@ var lodash = require('lodash');
 var fs = require('fs-extra');
 var path = require('path');
 var hexoFrontMatter = require('hexo-front-matter');
-var localConfig = require('../../.config')
+var localConfig = require('../../.config.json')
 
 var mdDir = path.resolve(__dirname, '..', 'markdown')
 var outputDir = path.resolve(__dirname, '..', 'build-markdown')
@@ -18,7 +18,7 @@ function processMdContent(sourceFile, md) {
   // console.log('write file', fileName)
   if(process.env.DIST) {
     if(parsedContent._content.indexOf('(media/') > -1) {
-      parsedContent._content = parsedContent._content.split('(media/').join(localConfig.markdownMediaPath)
+      parsedContent._content = parsedContent._content.split('(media/').join(localConfig['markdown-media-path'])
     }
   }
   fs.writeFile(outputFilePath, new Buffer(parsedContent._content))

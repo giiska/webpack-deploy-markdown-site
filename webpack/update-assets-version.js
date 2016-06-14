@@ -2,11 +2,11 @@
  * @version 0.0.1
  * @author yexiao
  */
-var localConfig = require('../.config')
+var localConfig = require('../.config.json')
 
 function updateVersion(hash) {
   var requestify = require('requestify')
-  var deployHashUrl = localConfig.hashDeployUrl + hash
+  var deployHashUrl = localConfig['hash-deploy-url'] + hash
   console.log('start request', deployHashUrl)
   requestify.get(deployHashUrl, {timeout: 2500})
     .then(function(response) {
