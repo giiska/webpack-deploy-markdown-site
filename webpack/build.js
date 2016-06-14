@@ -56,11 +56,6 @@ config.plugins = [
     jQuery: jqueryPath
   }),
   // new text('build.[hash].css'),
-	new html({
-		filename: 'index.html',
-		template: './h5/src/app.html',
-    isDIST: process.env.DIST
-	}),
 	// new webpack.optimize.CommonsChunkPlugin("common.[hash].js"),
 	new webpack.optimize.OccurenceOrderPlugin(),
 	new webpack.optimize.UglifyJsPlugin({
