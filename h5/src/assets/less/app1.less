@@ -1,0 +1,22 @@
+@import "lib-reset";
+@import "lib-base";
+@import "lib-ui";
+@import "lib-ui-space";
+
+// TODO: 添加到新的 ui 库中
+.ui-justify-grid {
+    text-align: justify;
+}
+.ui-justify-grid::after{
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+.ui-justify-grid-fix {
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: none !important;
+    transition: none !important;
+}

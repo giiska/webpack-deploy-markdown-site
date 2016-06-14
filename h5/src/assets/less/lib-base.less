@@ -1,0 +1,26 @@
+// 引入变量和混合函数
+// -----------------------
+@import "lib-var";
+@import "lib-mixins";
+
+html {
+  height: 100%;
+}
+
+// 文本默认设置
+body {
+    color: @colorPrimary;
+    font: 14px/1.6 @fontFamilyPrimary;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+//    .user-select(none);
+}
+
+
+a {
+  outline:none;
+    color: @colorLink;
+    text-decoration: none;
+    cursor: pointer;
+}
