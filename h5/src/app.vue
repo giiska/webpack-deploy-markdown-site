@@ -1,9 +1,12 @@
 
 <template>
     <div class="app1">
-        <sidebar></sidebar>
+        <sidebar v-ref:sidebar v-el:sidebar></sidebar>
         <div class="page-body" v-el:body>
-            <page-header></page-header>
+            <page-header
+                v-ref:header-bar
+                :show-category-panel.sync="showCategoryPanel">    
+            </page-header>
             <div class="app1-router-view">
                 <router-view></router-view>
             </div>
@@ -16,12 +19,14 @@
 
 
 <script>
-import "./assets/less/app1.less";
 import Sidebar from './components/Sidebar.vue';
 import PageHeader from './components/Header.vue';
 import PageFooter from './components/Footer.vue';
 // import BackToTop from "./lib/back-to-top/BackToTop.vue";
 import Db from 'clientData';
+
+// 放到所有 .vue 文件后面，防止 .vue 文件提取出来的样式影响全局样式
+import "./assets/less/app1.less";
 
 export default {
     components: {
@@ -31,10 +36,11 @@ export default {
          // ,
          // BackToTop
     },
-    // data() {
-    //     return {
-    //     }
-    // },
+    data() {
+        return {
+            showCategoryPanel: true
+        }
+    },
     methods: {
         bodyScrollTop(value) {
             this.$els.body.scrollTop = value

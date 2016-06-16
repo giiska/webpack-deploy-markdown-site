@@ -12,10 +12,11 @@ config.resolve = {
     'clientData': path.resolve(__dirname, '../data/client-h5.js')
   }
 }
+config.devtool = 'inline-source-map'
 config.entry = {
 	main: [
-    // 'webpack/hot/dev-server',
-    // 'webpack-dev-server/client?http://127.0.0.1:' + port,
+    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client?noInfo=true&reload=true',
 		path.resolve(__dirname, "../h5/src/app.js")
 	]
 }
@@ -32,7 +33,10 @@ config.vue = {
 	}
 }
 
-// config.plugins = [
+config.plugins = [
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin()
 //   new text("main.css", {allChunks: true})
-// ]
+]
 module.exports = config

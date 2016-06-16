@@ -45,11 +45,12 @@ function buildPosts(watchCb) {
   var contentArr = []
 
   function _createPostJson(contents) {
-    contents = lodash.omit(contents, function(o) {
-      return o === null
+    contents = lodash.filter(contents, function(o) {
+      return o !== null
     })
+    contents = lodash.orderBy(contents, ['date'], ['desc'])
     var f = path.resolve(outputJsonDir, 'posts.json')
-    fs.writeFileSync(f, JSON.stringify(contents))
+    fs.writeFileSync(f, JSON.stringify(contents, null, 2))
     console.log('posts build')
     watchCb && watchCb()
   }

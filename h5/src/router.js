@@ -29,10 +29,11 @@ router.map({
 });
 
 // All elements are position absolute, no need to use window scroll.
-// router.beforeEach(function (transition) {
-//   window.scrollTo(0, 0)
-  // transition.next()
-// });
+router.beforeEach(function (transition) {
+  // window.scrollTo(0, 0)
+  window.eventBus.emit('toggleSidePanel', false)
+  transition.next()
+});
 
 
 router.redirect({

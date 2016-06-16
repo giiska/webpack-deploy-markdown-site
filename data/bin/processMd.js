@@ -11,8 +11,9 @@ fs.ensureDirSync(outputDir)
 function processMdContent(sourceFile, md) {
   var content = md.toString()
   var parsedContent = hexoFrontMatter.parse(content)
-  if(parsedContent.draft)
-    return
+  // DIST 时不发布 draft 的文章
+  if(process.env.DIST && parsedContent.draft)
+    return null
   var outputFilePath = sourceFile.replace(mdDir, outputDir)
   var fileName = path.basename(sourceFile, '.md')
   // console.log('write file', fileName)
@@ -23,6 +24,14 @@ function processMdContent(sourceFile, md) {
   }
   fs.writeFile(outputFilePath, new Buffer(parsedContent._content))
   var output = lodash.pick(parsedContent, ['title', 'categories', 'tags', 'date'])
+  if(parsedContent.draft) {
+    output.title = '[draft] ' + output.title
+  }
+  var fileStat = fs.statSync(sourceFile)
+  // var ctime = new Date(fileStat.ctime.getTime() + fileStat.ctime.getTimezoneOffset() * 60 * 1000);
+  // console.log(ctime)
+  if(!output.date)
+    output.date = fileStat.ctime
   output.fileName = fileName
   return output
 }

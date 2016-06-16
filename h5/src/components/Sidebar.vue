@@ -13,6 +13,10 @@
 <script>
 import _lodash from 'lodash';
 import Db from 'clientData';
+const deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+const isResponsiveMax600px = deviceWidth <= 800
+console.log(isResponsiveMax600px)
+
 export default {
   data() {
     return {
@@ -20,11 +24,20 @@ export default {
     }
   },
   methods: {
+    openSidePanel(flag) {
+        if(!isResponsiveMax600px)
+            return
+        if(flag)
+          this.$el.classList.add('s-open')
+        else
+          this.$el.classList.remove('s-open')
+    },
     scrollSidebar() {
       console.log('sdf')
     }
   },
   ready() {
+    window.eventBus.on('toggleSidePanel', this.openSidePanel)
     // this.$nextTick(() => {
     //   this.$el.addEventListener('scroll', this.scrollSidebar, false);
     // })

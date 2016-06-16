@@ -6,7 +6,7 @@ window.eventBus = new EventEmitter()
 import router from './router'
 
 // 并没什么用
-// import './dev-before'
+import './dev-before'
 
 import 'classlist-polyfill'
 
