@@ -6,11 +6,9 @@
 
 <script>
 import _lodash from 'lodash';
-import Db from 'clientData';
 export default {
   data() {
     return {
-      posts: Db
     }
   }
 }

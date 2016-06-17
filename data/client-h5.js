@@ -1,8 +1,18 @@
 import _lodash from 'lodash'
 
-var data = require('./build-dev/posts')
+var posts = require('./build-dev/posts')
+var Store = {
+  posts: posts
+}
 
-window.Store = data
+Store.isResponsiveMax600px = () => {
+  const deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  return deviceWidth <= 800
+}
+
+window.Store = Store
+
 console.log('version: 1.0.0')
 
-export default Store
+// console.log(Store)
+module.exports = Store

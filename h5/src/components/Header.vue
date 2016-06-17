@@ -2,29 +2,30 @@
   <div class="header">
     <div class="header-inner app1-1080px ui-clearfix">
       <div class="ui-fl-l">
-        <a class="app1-option"
-            @click="openCategoryPanel"
-            :class="{
-                's-show': showCategoryPanel
-                }"
-            >选项</a>
-      
         <ul class="header-nav">
-          <li class="header-list">
+          <li class="">
+            <a class="app1-option"
+                @click="openCategoryPanel"
+                :class="{
+                    's-show': showOptionBtn
+                }"
+                >选项</a>
+          </li>
+          <li class="">
             <a class="header-link"
             v-link="{name: 'home', exact: true}"
             >
               首页
             </a>
           </li>
-          <li class="header-list">
+          <li class="">
             <a class="header-link"
             href="javascript:void(0);"
             >
               搜索
             </a>
           </li>
-          <li class="header-list">
+          <li class="">
             <a class="header-link"
             v-link="{name: 'contact', exact: true}"
             >
@@ -45,14 +46,13 @@ export default {
     //     Search
     // },
     props: {
-        showCategoryPanel: {
+        showOptionBtn: {
             type: Boolean
         }
     },
     methods: {
         openCategoryPanel() {
             window.eventBus.emit('toggleSidePanel', true)
-            // this.showCategoryPanel = !this.showCategoryPanel
         }
     }
 }
@@ -117,31 +117,13 @@ export default {
       }
     }
   }
-  .header-access{
-    display: inline-block;
-    margin-top: 37px;
-    width: 120px;
-    height: 35px;
-    font-size: 14px;
-    line-height: 33px;
-    color: #00c800;
-    text-align: center;
-    border: 1px solid #00c800;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    .transition(.3s ease all);
 
-    &:hover{
-      background: #00c800;
-      color: #fff;
-     }
-  }
   .header-nav{
     display: inline-block;
     font-size: 14px;
     list-style: none;
   }
-  .header-list{
+  .header-nav li {
     display: inline-block;
     color: #979aa2;
 
@@ -164,7 +146,6 @@ export default {
 
 .app1-option {
     width: 50px;
-    display: block;
     height: 40px;
     line-height: 40px;
     text-align: center;
@@ -174,15 +155,17 @@ export default {
     background-position: center;
     background-size: 50%;
     text-indent: -9000em;
+    z-index: 9;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    // background-image: url(../assets/images/icon-close.png);
+    background-size: 17px 17px;
+    background-color: #e0e1e4;
+    display: none;
 
     &.s-show {
-        z-index: 9;
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        // background-image: url(../assets/images/icon-close.png);
-        background-size: 17px 17px;
-        background-color: #e0e1e4;
+        display: block;
     }
 }
 </style>

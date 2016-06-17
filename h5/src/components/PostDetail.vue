@@ -36,7 +36,7 @@ export default {
             const Db = window.Store
             const id = this.$route.params.detailId
             console.log('id', id)
-            const post = lodash.find(Db, {fileName: id})
+            const post = lodash.find(Db.posts, {fileName: id})
             // let postTitle = ''
             // let postDate = ''
             if(post) {

@@ -3,7 +3,7 @@
   <div class="">
     <ul class="post-list ui-list-unstyled">
       <li v-for="p in posts">
-        <a v-link="{name: 'post-detail', params:{detailId: p.fileName}}">{{p.title}}</a>
+        <a @click="goItem(p)" v-link="{name: 'post-detail', params:{detailId: p.fileName}}">{{p.title}}</a>
       </li>
     </ul>
   </div>
@@ -12,35 +12,39 @@
 
 <script>
 import _lodash from 'lodash';
-import Db from 'clientData';
-const deviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-const isResponsiveMax600px = deviceWidth <= 800
-console.log(isResponsiveMax600px)
 
 export default {
+  props: {
+      showCategoryPanel: {
+          type: Boolean
+      }
+  },
   data() {
     return {
-      posts: Db
+      posts: window.Store.posts
+    }
+  },
+  watch: {
+    showCategoryPanel: function(val) {
+      this.toggleSidePanel(val)
     }
   },
   methods: {
-    openSidePanel(flag) {
-        if(!isResponsiveMax600px)
+    goItem(p) {
+      this.$set('showCategoryPanel', false)
+      // this.$route.router.go({name: 'post-detail', params:{detailId: p.fileName}})
+    },
+    toggleSidePanel(flag) {
+        if(!window.Store.isResponsiveMax600px())
             return
         if(flag)
           this.$el.classList.add('s-open')
         else
           this.$el.classList.remove('s-open')
-    },
-    scrollSidebar() {
-      console.log('sdf')
     }
   },
   ready() {
-    window.eventBus.on('toggleSidePanel', this.openSidePanel)
-    // this.$nextTick(() => {
-    //   this.$el.addEventListener('scroll', this.scrollSidebar, false);
-    // })
+    
   }
 }
 </script>
@@ -49,15 +53,19 @@ export default {
 <style lang="less">
 .sidebar {
   position: absolute;
-  width: 300px;
   left: 0;
   height: 100%;
   overflow-y: auto;
   background: #fafafa;
   border-right: 1px solid rgba(0,0,0,.07);
-}
-.post-list li {
-  margin-bottom: 5px;
+  transition: transform .1s ease-out;
+  transform: translateX(-800px);
+  width: 100%;
+  z-index: 2;
+
+  &.s-open {
+    transform: translateX(0);
+  }
 }
 .post-list li a {
   display: block;

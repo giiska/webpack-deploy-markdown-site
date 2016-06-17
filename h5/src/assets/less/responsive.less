@@ -3,18 +3,26 @@
 @import "lib-var";
 @import "lib-mixins";
 
-@media only screen and (max-width: 800px) {
+@media only screen and (min-width: 800px) {
   .sidebar {
-    transition: transform .1s ease-out;
-    transform: translateX(-800px);
-    width: 100%;
-    z-index: 2;
-
-    &.s-open {
-      transform: translateX(0);
-    }
+    transform: translateX(0);
+    width: 300px;
   }
   .page-body {
-    left: 0;
+    // 比 sidebar z index 高
+    z-index: 3;
+    left: 300px;
+    transition: left .1s ease-out;
+    background-color: #fff;
+
+    &.s-expand {
+      left: 0;
+    }
+  }
+
+  .app1-option {
+    position: static;
+    display: block;
+    background-color: transparent;
   }
 }

@@ -1,6 +1,7 @@
 <template>
 <div class="app1-home">
-  Email: {{email}}
+  <p>Github: <a href="https://github.com/bammoo">https://github.com/bammoo</a></p>
+  <p>Email: {{email}}</p>
 </div>
 </template>
 
