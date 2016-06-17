@@ -28,7 +28,7 @@ app.use(express.static(path.resolve(__dirname, '../h5')));
 // app.use('/static', express.static('./src/assets'))
 
 var port = 8078
-setIterm2Badge(port)
+setIterm2Badge('markdown' + port)
 app.listen(port, '0.0.0.0', function (err) {
   if (err) {
     console.log(err)
