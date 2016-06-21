@@ -5,7 +5,8 @@ var lodash = require('lodash')
 var processMethods = require('./processMd');
 var chokidar = require('chokidar');
 
-var mdDir = path.resolve(__dirname, '..', 'markdown')
+var localConfig = require('../../.config.json')
+var mdDir = localConfig.markdownPath
 var outputDir = path.resolve(__dirname, '..', 'build-markdown')
 var outputJsonDir = path.resolve(__dirname, '..', 'build-dev')
 fs.ensureDirSync(outputDir)
@@ -67,10 +68,14 @@ function buildPosts(watchCb) {
         return
       }
       // DIST 用同步， dev watch 用 promise
+      var opts = {
+        mdDir: mdDir,
+        outputDir: outputDir
+      }
       if(watchCb)
-        promiseArr.push(processMethods.processMd(filePath))
+        promiseArr.push(processMethods.processMd(filePath, opts))
       else
-        contentArr.push(processMethods.processMdSync(filePath))
+        contentArr.push(processMethods.processMdSync(filePath, opts))
     })
   }
   walkDir(mdDir)

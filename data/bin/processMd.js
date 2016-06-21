@@ -4,11 +4,9 @@ var path = require('path');
 var hexoFrontMatter = require('hexo-front-matter');
 var localConfig = require('../../.config.json')
 
-var mdDir = path.resolve(__dirname, '..', 'markdown')
-var outputDir = path.resolve(__dirname, '..', 'build-markdown')
-fs.ensureDirSync(outputDir)
-
-function processMdContent(sourceFile, md) {
+function processMdContent(sourceFile, md, opts) {
+  var mdDir = opts.mdDir
+  var outputDir = opts.outputDir
   var content = md.toString()
   var parsedContent = hexoFrontMatter.parse(content)
   // DIST 时不发布 draft 的文章
@@ -35,15 +33,15 @@ function processMdContent(sourceFile, md) {
   output.fileName = fileName
   return output
 }
-function processMdSync(sourceFile) {
+function processMdSync(sourceFile, opts) {
   var md = fs.readFileSync(sourceFile)
-  var content = processMdContent(sourceFile, md)
+  var content = processMdContent(sourceFile, md, opts)
   return content
 }
-function processMd(sourceFile) {
+function processMd(sourceFile, opts) {
   return new Promise(function(resolve, reject) {
     fs.readFile(sourceFile, function(err, md) {
-      var output = processMdContent(sourceFile, md)
+      var output = processMdContent(sourceFile, md, opts)
       output ? resolve(output) : reject()
     })
   }).catch(function(err) {
