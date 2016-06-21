@@ -1,7 +1,7 @@
 // 引入变量和混合函数
 // -----------------------
 @import "lib-var";
-@import "lib-mixins";
+@import "lib-mixins-no-touch";
 
 html {
   height: 100%;
@@ -9,18 +9,22 @@ html {
 
 // 文本默认设置
 body {
-    color: @colorPrimary;
-    font: 14px/1.6 @fontFamilyPrimary;
+    color: #333;
+    font: 14px/1.6 @font-family-base;
     height: 100%;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: none;
-//    .user-select(none);
+}
+
+
+body, html, .app1 {
+    .mobile-no-touch();
 }
 
 
 a {
   outline:none;
-    color: @colorLink;
+    color: #049cdb;
     text-decoration: none;
     cursor: pointer;
 }
