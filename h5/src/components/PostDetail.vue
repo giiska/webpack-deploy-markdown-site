@@ -6,7 +6,7 @@
         <p class="app1-learn-detail-date ui-list-unstyled">
             <span v-if="post.categories"><B>Category: </B>{{post.categories}}&nbsp; &nbsp;</span>
             <span v-if="post.tags"><B>Tags: </B>{{post.tags}}&nbsp; &nbsp;</span>
-            <span>{{post.date}}</span>
+            <span>{{post.renderDate}}</span>
         </p>
         <post-detail-content :content="content"></post-detail-content>
     </div>
@@ -43,7 +43,7 @@ export default {
             //     postTitle = post.title ? post.title : ''
                 if(post.date) {
                     const postdate = new Date(post.date)
-                    post.date = postdate.getFullYear() + '-' + postdate.getMonth()
+                    post.renderDate = postdate.getFullYear() + '-' + (postdate.getMonth() + 1)
                         + '-' + postdate.getDate() 
                         + ' ' + postdate.getHours()
                         + ':' + postdate.getMinutes()
