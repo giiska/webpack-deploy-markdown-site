@@ -291,7 +291,7 @@ border-top: none;
 }
 
 .app1-learn-detail-markdown li {
-    margin-bottom: 1.2em;
+    margin-bottom: .6em;
 }
 
 .app1-learn-detail-markdown li ul,
