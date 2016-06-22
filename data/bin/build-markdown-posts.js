@@ -12,11 +12,16 @@ var outputJsonDir = path.resolve(__dirname, '..', 'build-dev')
 fs.ensureDirSync(outputDir)
 fs.ensureDirSync(outputJsonDir)
 
+var opts = {
+  mdDir: mdDir,
+  outputDir: outputDir
+}
+
 function proc(event, filePath) {
   // console.log(event, filePath)
   var outputFilePath = filePath.replace(mdDir, outputDir)
   if (['change', 'add'].indexOf(event) > -1 && path.extname(filePath) === '.md') {
-      processMethods.processMd(filePath)
+      processMethods.processMd(filePath, opts)
       buildPosts()
   }
   else if ('unlink' === event) {
@@ -68,10 +73,6 @@ function buildPosts(watchCb) {
         return
       }
       // DIST 用同步， dev watch 用 promise
-      var opts = {
-        mdDir: mdDir,
-        outputDir: outputDir
-      }
       if(watchCb)
         promiseArr.push(processMethods.processMd(filePath, opts))
       else
