@@ -44,7 +44,7 @@ export default {
     }
   },
   ready() {
-    
+    window.eventBus.emit('stopPropagation', this.$el)
   }
 }
 </script>
@@ -55,7 +55,9 @@ export default {
   position: absolute;
   left: 0;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: #fafafa;
   border-right: 1px solid rgba(0,0,0,.07);
   transition: transform .1s ease-out;

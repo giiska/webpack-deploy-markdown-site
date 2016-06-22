@@ -73,6 +73,7 @@ export default {
     window.addEventListener('resize', this.resizeWin)
     window.eventBus.on('toggleSidePanel', this.toggleShowCategoryPanel)
     window.eventBus.on('resetScrollTop', this.bodyScrollTop)
+    window.eventBus.emit('stopPropagation', this.$els.body)
     // setTimeout(() => {
     //     this.$refs.backtop.init()
     // }, 0)
@@ -117,6 +118,8 @@ export default {
   right: 0;
   bottom: 0;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 </style>

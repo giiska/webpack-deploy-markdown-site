@@ -10,5 +10,10 @@ import './dev-before'
 
 import 'classlist-polyfill'
 
+document.ontouchmove = function(e) {e.preventDefault()};
+document.getElementById('app').ontouchmove = function(e) {e.stopPropagation()};
+window.eventBus.on('stopPropagation', (el) => {
+  el.ontouchmove = function(e) {e.stopPropagation()};
+})
 const App = require('./app.vue');
 router.start(App, '#app');
