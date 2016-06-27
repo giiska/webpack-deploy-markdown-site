@@ -18,18 +18,25 @@
               首页
             </a>
           </li>
-          <li class="">
+          <!-- <li class="">
             <a class="header-link"
             href="javascript:void(0);"
             >
               搜索
             </a>
-          </li>
+          </li> -->
           <li class="">
             <a class="header-link"
             v-link="{name: 'contact', exact: true}"
             >
-              联系我
+              联系叶萧
+            </a>
+          </li>
+          <li class="">
+            <a class="header-link"
+            v-link="{name: 'about', exact: true}"
+            >
+              本站内幕
             </a>
           </li>
         </ul>
@@ -150,7 +157,6 @@ export default {
     line-height: 40px;
     text-align: center;
     background-image: url('data:image/svg+xml;charset=utf-8,<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g class="transform-group"><g transform="scale(0.03125, 0.03125)"><path d="M64.271816 895.910717l0-83.948971 895.456369 0 0 83.948971L64.271816 895.910717zM64.271816 470.025003l895.456369 0 0 83.948971L64.271816 553.973974 64.271816 470.025003zM64.271816 128.089283l895.456369 0 0 83.948971L64.271816 212.038254 64.271816 128.089283z" fill="#a9b7b7"></path></g></g></svg>');
-    // background-image: url(../assets/images/option.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
@@ -159,7 +165,6 @@ export default {
     position: fixed;
     top: 10px;
     right: 10px;
-    // background-image: url(../assets/images/icon-close.png);
     background-size: 17px 17px;
     background-color: #e0e1e4;
     display: none;

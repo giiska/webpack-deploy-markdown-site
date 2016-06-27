@@ -18,6 +18,10 @@ router.map({
     name: 'home',
     component: require('./components/Home.vue')
   },
+  '/about': {
+    name: 'about',
+    component: require('./components/About.vue')
+  },
   '/contact': {
     name: 'contact',
     component: require('./components/Contact.vue')

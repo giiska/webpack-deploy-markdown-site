@@ -95,7 +95,7 @@ export default {
 }
 .app1-router-view {
   min-height: 400px;
-  margin: 30px;
+  margin: 15px;
 }
 .app1-view {
   margin-top: 50px;
