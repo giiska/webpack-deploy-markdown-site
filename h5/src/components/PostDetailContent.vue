@@ -407,24 +407,6 @@ border-top: none;
     line-height: 1.5;
     padding: 10px;
 }
-.app1-learn-detail-markdown .h3_ban {
-    margin-top: 22px;
-    margin-bottom: 1.6em;
-    font-size: 18px;
-    line-height: 60px;
-    border-bottom: 1px solid #e7e7eb;
-
-    &::before {
-        content: '';
-        width: 18px;
-        height: 18px;
-        display: inline-block;
-        vertical-align: -2px;
-        margin-right: 8px;
-        background: url("http://wximg.qq.com/wxp/wxmoment-doc/images/ban.png");
-        background-size: 18px 18px;
-    }
-}
 .app1-learn-detail-markdown {
 
     code[class*="language-"],
