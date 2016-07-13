@@ -1,15 +1,15 @@
 <template>
-<div class="app1-home">
-  <p>Github: <a href="https://github.com/bammoo">https://github.com/bammoo</a></p>
-  <p>Email: {{email}}</p>
+<div class="app1-learn-detail-markdown">
+  {{{content}}}
 </div>
 </template>
 
 <script>
+import content from "./contact.md"
 export default {
   data() {
     return {
-      email: 'xiao-jianfeng@qq.com'
+      content: content
     }
   }
 }
