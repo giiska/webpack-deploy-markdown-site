@@ -38,15 +38,19 @@ function proc(event, filePath) {
 }
 
 function watchMd() {
-  console.log('watching.')
-    chokidar.watch(mdDir + '/**/*', {
+  console.log('watching change.')
+    chokidar.watch([
+        mdDir + '/**/*.md', 
+        '!' + mdDir + '/.*', 
+        '!' + mdDir + '/**/.*'
+      ], {
         name: 'watchPageHtml',
         ignoreInitial: true
     })
     .on("all", proc);
 }
 
-function buildPosts(watchCb) {
+function buildPosts(isWatch) {
   var promiseArr = []
   var contentArr = []
 
@@ -58,25 +62,29 @@ function buildPosts(watchCb) {
     var f = path.resolve(outputJsonDir, 'posts.json')
     fs.writeFileSync(f, JSON.stringify(contents, null, 2))
     console.log('posts build')
-    watchCb && watchCb()
+    if(isWatch)
+      watchMd()
   }
   var walkDir = function(dir) {
     fs.readdirSync(dir).map(function(file) {
       var filePath = path.resolve(dir, file);
       if(fs.statSync(filePath).isDirectory()) {
-        proc('addDir', filePath)
-        walkDir(filePath)
-        return
+        // 非 . 开头的目录才可以
+        if(path.basename(filePath)[0] !== '.') {
+          proc('addDir', filePath)
+          walkDir(filePath)
+        }
       }
-      if(path.extname(filePath) !== '.md') {
+      else if(path.extname(filePath) !== '.md') {
         proc('add', filePath)
-        return
       }
-      // DIST 用同步， dev watch 用 promise
-      if(watchCb)
-        promiseArr.push(processMethods.processMd(filePath, opts))
-      else
-        contentArr.push(processMethods.processMdSync(filePath, opts))
+      else {
+        // DIST 用同步， dev watch 用 promise
+        if(isWatch)
+          promiseArr.push(processMethods.processMd(filePath, opts))
+        else
+          contentArr.push(processMethods.processMdSync(filePath, opts))
+      }
     })
   }
   walkDir(mdDir)
@@ -93,7 +101,7 @@ function buildPosts(watchCb) {
 // buildPosts(watchMd)
 module.exports = function(watchMode) {
   if(watchMode)
-    buildPosts(watchMd)
+    buildPosts(/*isWatch*/true)
   else
     buildPosts()
 }
