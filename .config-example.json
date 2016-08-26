@@ -1,6 +1,6 @@
 {
   "markdownPath": "/Users/someone/Documents/blog-markdown",
   "hash-deploy-url": "http://zaishanda.com:8081/?newhash=",
-  "public-path": "http://__qiniu_cdn_domain__/site/",
-  "markdown-media-path": "http://__qiniu_cdn_domain__/site-media/"
+  "public-url": "http://__qiniu_cdn_domain__/site/",
+  "markdown-media-url": "http://__qiniu_cdn_domain__/site-media/"
 }

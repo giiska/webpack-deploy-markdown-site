@@ -17,7 +17,7 @@ function processMdContent(sourceFile, md, opts) {
   // console.log('write file', fileName)
   if(process.env.DIST) {
     if(parsedContent._content.indexOf('(media/') > -1) {
-      parsedContent._content = parsedContent._content.split('(media/').join('(' + localConfig['markdown-media-path'])
+      parsedContent._content = parsedContent._content.split('(media/').join('(' + localConfig['markdown-media-url'])
     }
   }
   fs.writeFile(outputFilePath, new Buffer(parsedContent._content))

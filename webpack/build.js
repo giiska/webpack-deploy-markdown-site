@@ -27,7 +27,7 @@ config.output = {
   filename: "build.[hash].js"
 }
 if(process.env.DIST)
-  config.output.publicPath = localConfig['public-path']
+  config.output.publicPath = localConfig['public-url']
 
 config.module = require('./loader')
 

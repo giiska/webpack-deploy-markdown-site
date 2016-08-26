@@ -16,7 +16,8 @@ app.use(require('connect-history-api-fallback')())
 app.use(require("webpack-dev-middleware")(compiler, {
     publicPath: devConfig.output.publicPath,
     stats: {
-        colors: true
+        colors: true,
+        chunks: false
     }
 }));
 
