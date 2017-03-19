@@ -1,6 +1,6 @@
 /**
  * @version 0.0.1
- * @author yexiao
+ * @author John Xiao
  */
 
 var vfs = require('vinyl-fs');

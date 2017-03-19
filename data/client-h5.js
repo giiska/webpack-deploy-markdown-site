@@ -1,5 +1,3 @@
-import _lodash from 'lodash'
-
 var posts = require('./build-dev/posts')
 var Store = {
   posts: posts

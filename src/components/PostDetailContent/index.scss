@@ -1,0 +1,7 @@
+
+.app1-learn-detail-markdown {
+    @import "./PostDetailContentMarkdown.scss";
+
+    // 代码高亮
+    @import "./PostDetailContentMarkdownCode.scss";
+}
