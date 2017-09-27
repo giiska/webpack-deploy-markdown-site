@@ -1,6 +1,6 @@
 # Webpack Deploy Markdown Site
 
-Blog Framework built with node 6.0 +, Webpack, Vue 2.x, hexo-front-matter, markdown, visit [about](http://zaishanda.com/about).
+Blog Framework built with node 6.0 +, Webpack 2.x, Vue 2.4.x, hexo-front-matter, markdown, visit [about](http://zaishanda.com/about).
 
 
 ## Instruction
@@ -25,11 +25,9 @@ In root doler, copy `.config-example.json` to `.config.json`, config params base
 
 ## Dir Instruction
 
- - data/bin 开发与部署时编译打包数据的脚本
- - data/build 和 data/build-dev 开发与部署数据编译打包结果
- - data/client-h5.js 客户端数据接口
- - build webpack 编译结果
- - src blog 网站页面代码
+ - **webpack** webpack 及 nodejs 脚本
+ - **build** 开发与部署数据编译打包结果
+ - **src** blog 网站页面代码
 
 
 ## 开发与部署 命令
