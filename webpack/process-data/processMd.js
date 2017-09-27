@@ -10,6 +10,7 @@ function processMdContent(sourceFile, md, opts) {
   var content = md.toString()
   var parsedContent = hexoFrontMatter.parse(content)
   // DIST 时不发布 draft 的文章
+  console.log(parsedContent.title, parsedContent.draft)
   if(process.env.DIST && parsedContent.draft)
     return null
   var outputFilePath = sourceFile.replace(mdDir, outputDir)

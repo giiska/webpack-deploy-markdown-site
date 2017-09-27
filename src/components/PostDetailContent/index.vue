@@ -6,6 +6,10 @@
 import loadAllImages from 'bm-load-image';
 import eventBus from '../../eventBus'
 import './index.scss'
+import Prism from 'prismjs'
+import 'prismjs/components/prism-json'
+import 'prismjs/components/prism-bash'
+
 const windowHref = location.href
 const windowHrefWithoutHash = windowHref.replace(location.hash, '')
 export default {
@@ -58,7 +62,6 @@ export default {
         content() {
             // bind event to anchor
             const links = this.$el.querySelectorAll('a');
-            const _this = this
             links.forEach((link) => {
                 const thisHref = link.href.replace(windowHrefWithoutHash, '')
                 if(thisHref && thisHref.indexOf('http') > -1) {
@@ -74,7 +77,7 @@ export default {
                         const hash = link.hash.slice(1)
                         if(hash) {
                             // check name link first
-                            const target = _this.$el.querySelector('a[name=' + hash + ']')
+                            const target = this.$el.querySelector('a[name=' + hash + ']')
                             if(target)
                                 target.scrollIntoView()
                             // otherwise, check h2-h6 title
@@ -91,9 +94,6 @@ export default {
             })
 
             this.$nextTick(function () {
-                var Prism = require("prismjs")
-                require("prismjs/components/prism-json");
-                require("prismjs/components/prism-bash");
                 Prism.highlightAll()
                 // this.$root.initBackTop()
             })

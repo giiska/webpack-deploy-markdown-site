@@ -6,6 +6,4 @@
 var path = require('path')
 var uploadCdn = require(path.resolve(__dirname, '../tools/upload-qiniu'));
 
-uploadCdn(path.resolve(__dirname, '../h5/build/**'), 'site/')
-
-module.exports = uploadCdn
+uploadCdn(path.resolve(__dirname, '../build/**'), 'site/')

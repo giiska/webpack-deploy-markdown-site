@@ -18,19 +18,16 @@
       </div>
       <page-footer></page-footer>
     </div>
-    <!-- <back-to-top v-ref:backtop></back-to-top> -->
   </div>
 
 </template>
-
 
 <script>
 import Sidebar from './components/Sidebar.vue';
 import PageHeader from './components/Header.vue';
 import PageFooter from './components/Footer.vue';
-// import BackToTop from "./back-to-top/BackToTop.vue";
 import eventBus from './eventBus'
-import 'clientData';
+import './client-data';
 
 // 放到所有 .vue 文件后面，防止 .vue 文件提取出来的样式影响全局样式
 import "./app1.less";
@@ -40,8 +37,6 @@ export default {
      Sidebar,
      PageHeader,
      PageFooter
-     // ,
-     // BackToTop
   },
   props: {
       showCategoryPanel: {

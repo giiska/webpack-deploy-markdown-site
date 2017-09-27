@@ -12,7 +12,7 @@
     <div v-if="post" class="app1-learn-detail-content">
         <h1 class="app1-learn-detail-title" id="top">{{post.title}}</h1>
         <p class="app1-learn-detail-date ui-list-unstyled">
-            <span v-if="post.categories"><B>Category: </B>{{post.categories.join(',')}}&nbsp; &nbsp;</span>
+            <span v-if="post.categories"><B>Category: </B>{{post.categories}}&nbsp; &nbsp;</span>
             <span v-if="post.tags"><B>Tags: </B>{{post.tags.join(',')}}&nbsp; &nbsp;</span>
             <span>{{post.renderDate}}</span>
         </p>
@@ -21,7 +21,6 @@
 </div>
 </template>
 <script>
-import lodash from 'lodash';
 import MarkdownContent from '../components/PostDetailContent/index.vue';
 
 export default {
@@ -53,8 +52,12 @@ export default {
         },
         getPost(id, cb) {
             const Db = window.Store
-            // console.log('id', id)
-            const post = lodash.find(Db.posts, {fileName: id})
+
+            if(!id) {
+                throw new Error('no id in getPost')
+                return
+            }
+            const post = Db.posts.find(item => item.fileName == id)
             // let postTitle = ''
             // let postDate = ''
             if(post) {
@@ -66,19 +69,24 @@ export default {
                         + ' ' + postdate.getHours()
                         + ':' + postdate.getMinutes()
                 }
+                else {
+                    post.renderDate = 'no'
+                }
+                if(typeof post.categories === 'array') {
+                    post.categories = post.categories.join(',')
+                }
             }
             let content = ''
-            if(id) {
-                try {
-                    content = require('markdownDir/' + id + '.md')
-                } catch (err) {
-                    cb(err, null)
-                    // console.log('post not found.')
-                }
 
-                if(!content) {
-                    content = 'post not found.'
-                }
+            try {
+                content = require('markdownDir/' + id + '.md')
+            } catch (err) {
+                cb(err, null)
+                // console.log('post not found.')
+            }
+
+            if(!content) {
+                content = 'post not found.'
             }
             // console.log('content', content)
             post.content = content
@@ -92,8 +100,6 @@ export default {
 }
 </script>
 <style lang="less">
-@import "../less/lib-var.less";
-@import "../less/lib-mixins.less";
 // content
 .app1-learn-detail{
    padding-bottom: 100px;
@@ -120,4 +126,3 @@ export default {
     margin-bottom: 30px;
 }
 </style>
-

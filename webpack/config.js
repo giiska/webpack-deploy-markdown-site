@@ -17,10 +17,13 @@ config.globalProvide = {
   jQuery: jqueryPath
 }
 
-// 测试时想使用 mock 数据，可显示申明 USE_PRODUCTION_DATA=false
-const USE_PRODUCTION_DATA = process.env.USE_PRODUCTION_DATA || NODE_ENV === 'production'
+let HISTORY_MODE = false
+if(DIST || BETA) {
+  HISTORY_MODE = true
+}
 
 config.globalDefine = {
+    HISTORY_MODE,
     'process.env': {
         'NODE_ENV' : JSON.stringify(NODE_ENV)
     },
@@ -28,8 +31,7 @@ config.globalDefine = {
     DEBUG: process.env.DEBUG,
     DIST,
     BETA,
-    DEMO,
-    USE_PRODUCTION_DATA
+    DEMO
 }
 
 module.exports = config

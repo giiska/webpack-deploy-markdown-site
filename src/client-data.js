@@ -1,4 +1,4 @@
-var posts = require('./build-dev/posts')
+var posts = require('../build/json/posts.json')
 var Store = {
   posts: posts
 }

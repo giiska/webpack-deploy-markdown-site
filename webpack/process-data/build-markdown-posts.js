@@ -7,8 +7,8 @@ var chokidar = require('chokidar');
 
 var localConfig = require('../../.config.json')
 var mdDir = localConfig.markdownPath
-var outputDir = path.resolve(__dirname, '..', 'build-markdown')
-var outputJsonDir = path.resolve(__dirname, '..', 'build-dev')
+var outputDir = path.resolve(__dirname, '../../build', 'markdown')
+var outputJsonDir = path.resolve(__dirname, '../../build', 'json')
 fs.ensureDirSync(outputDir)
 fs.ensureDirSync(outputJsonDir)
 

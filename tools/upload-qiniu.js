@@ -19,6 +19,9 @@ var uploadCdn = function (src, cdnDest) {
       versioning: false,
       concurrent: 10
     }))
+    .on('error', function (err) {
+      console.log('error', err)
+    })
     .on('end', function () {
       console.log('to cdn end.')
     })

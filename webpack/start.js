@@ -10,18 +10,18 @@ var globalConf = require('./config')
 const {__PROD__, DIST, BETA, DEMO} = globalConf.globalDefine
 
 if(__PROD__) {
-  // require('../data/bin/build-dist')()
+  require('./process-data/build-dist')()
 }
 else {
   var setIterm2Badge = require('set-iterm2-badge')
   setIterm2Badge('blog' + port)
+  require('./process-data/build-dev')(/*watchMode=*/true)
 }
 
 var config = {}
 config.resolve = {
   alias: {
-    'markdownDir': path.resolve(__dirname, '../data/build-markdown/'),
-    'clientData': path.resolve(__dirname, '../data/client-h5.js')
+    'markdownDir': path.resolve(__dirname, '../build/markdown/')
   }
 }
 config.entry = [
@@ -62,8 +62,8 @@ config.plugins = [
   function() {
     if(__PROD__)
       this.plugin('done', function(stats) {
-        require('./upload-assets')
-        require('./update-assets-version')(stats.hash)
+        require('./upload/upload-assets')
+        require('./upload/update-assets-version')(stats.hash)
       })
   },
   new webpack.DefinePlugin(globalConf.globalDefine),

@@ -28,8 +28,8 @@ In root doler, copy `.config-example.json` to `.config.json`, config params base
  - data/bin 开发与部署时编译打包数据的脚本
  - data/build 和 data/build-dev 开发与部署数据编译打包结果
  - data/client-h5.js 客户端数据接口
- - h5/build webpack 编译结果
- - h5/src blog 网站页面代码
+ - build webpack 编译结果
+ - src blog 网站页面代码
 
 
 ## 开发与部署 命令

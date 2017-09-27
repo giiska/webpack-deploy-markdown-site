@@ -22,7 +22,7 @@
             </a>
           </li> -->
           <li class="">
-            <router-link class="header-link" to="/contact" exact>联系叶萧</router-link>
+            <router-link class="header-link" to="/contact" exact>联系我</router-link>
           </li>
           <li class="">
             <router-link class="header-link" to="/about" exact>本站内幕</router-link>
