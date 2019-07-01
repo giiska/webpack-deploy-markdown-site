@@ -1,7 +1,7 @@
-var text = require("extract-text-webpack-plugin")
+// var text = require("extract-text-webpack-plugin")
 
 module.exports = {  
-  loaders: [
+  rules: [
   {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
